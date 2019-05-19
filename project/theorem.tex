@@ -1,0 +1,244 @@
+\usepackage{amsmath,amsthm,amsfonts,mathtools}
+
+%% Other Packages
+\usepackage[most]{tcolorbox}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\tcbuselibrary{skins,breakable,theorems}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{cleveref}
+
+\tcbset{
+    thmbox/.style={
+        enhanced,
+        breakable,
+        sharp corners=all,
+        fonttitle=\bfseries\normalsize,
+        fontupper=\normalsize\itshape,
+        leftrule=10pt,
+        toprule=-1pt,
+        bottomrule=-2pt,
+        boxsep=5pt,
+         top=0mm,
+         bottom=0mm,
+         right=0mm,
+        colback=white,
+        colframe=white,
+        colbacktitle=white,
+        coltitle=black,
+        attach boxed title to top left,
+        boxed title style={empty, size=minimal, bottom=1.5mm},
+        overlay unbroken ={
+            \draw (title.south west)--(title.south east);
+            \draw ([xshift=3.5mm]frame.north west)|-%
+                  (frame.south east)--(frame.north east);},
+        overlay first={
+            \draw (title.south west)--(title.south east); 
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);
+            \draw (frame.north east)--(frame.south east);},
+        overlay middle={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);
+            \draw (frame.north east)--(frame.south east);},
+        overlay last={
+            \draw ([xshift=3.5mm]frame.north west)|-%
+                  (frame.south east)--(frame.north east);},
+        },
+    S/.style={thmbox, 
+        overlay unbroken ={
+            \draw (title.south west)--(title.south east);
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay first={
+            \draw (title.south west)--(title.south east); 
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay middle={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay last={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        },
+    L/.style={thmbox, 
+        overlay unbroken ={
+            \draw (title.south west)--(title.south east);
+            \draw ([xshift=3.5mm]frame.north west)|-([xshift=15mm]frame.south west);},
+        overlay first={
+            \draw (title.south west)--(title.south east); 
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay middle={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay last={
+            \draw ([xshift=3.5mm]frame.north west)|-([xshift=15mm]frame.south west);},
+        },
+    P/.style={thmbox,
+        fonttitle=\itshape\normalsize,
+        overlay unbroken ={
+            \draw (title.south west)--(title.south east);
+            \draw ([xshift=3.5mm]frame.north west)|-([xshift=15mm]frame.south west);
+            \node[anchor=east] at (frame.south east) {$\square$};},
+        overlay first={
+            \draw (title.south west)--(title.south east); 
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);
+        },
+        overlay middle={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);
+        },
+        overlay last={
+            \draw ([xshift=3.5mm]frame.north west)|-([xshift=15mm]frame.south west);
+            \node[anchor=east] at (frame.south east) {$\square$};
+        },
+    },
+    M/.style={thmbox,
+        fonttitle=\bfseries\Large,
+        fontupper=\normalsize,
+        colback=thmBgColor,
+        overlay unbroken ={
+            \draw (title.south west)--(title.south east);
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay first={
+            \draw (title.south west)--(title.south east); 
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay middle={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay last={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+    },
+    T/.style={thmbox,
+        fonttitle=\bfseries\Large,
+        fontupper=\normalsize,
+        colback=thmBgColor,
+        overlay unbroken ={
+            \draw (title.south west)--(title.south east);
+            \draw ([xshift=3.5mm]frame.north west)|-%
+                (frame.south east)--(frame.north east);},
+        overlay first={
+            \draw (title.south west)--(title.south east); 
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay middle={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay last={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+    },
+}
+
+\tcbset{
+    example/.style={
+        enhanced,
+        breakable,
+        sharp corners=all,
+        fonttitle=\underline\normalsize,
+        fontupper=\normalsize\itshape,
+         top=0mm,
+         bottom=0mm,
+         right=0mm,
+        colback=white,
+        colframe=white,
+        colbacktitle=white,
+        coltitle=black,
+        attach boxed title to top left,
+        boxed title style={empty, size=minimal, bottom=1.5mm},
+        overlay unbroken ={
+            \draw (title.south west)--(title.south east);
+            \draw ([xshift=3.5mm]frame.north west)|-([xshift=15mm]frame.south east);},
+        overlay first={
+            \draw (title.south west)--(title.south east); 
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);
+            \draw (frame.north east)--(frame.south east);},
+        overlay middle={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);
+            \draw (frame.north east)--(frame.south east);},
+        overlay last={
+            \draw ([xshift=3.5mm]frame.north west)|-%
+                  (frame.south east)--(frame.north east);},
+        },
+}
+
+\newtcbtheorem[number within=section]{theorem}{Lause}{thmbox,T}{theo}
+\newtcbtheorem[number within=section]{corollary}{Seuraus}{thmbox}{theo}
+\newtcbtheorem[
+    number within=section,
+    crefname={definition}{Definition},
+    Crefname={Definition}{Definition} ]{definition}{Definition}{thmbox,M}{theo}
+\newtcbtheorem[number within=section]{lemma}{Lemma}{thmbox,M}{theo}
+\newtcbtheorem[]{tcbSthmbox}{Theorem}{thmbox,S}{theo}
+\newtcbtheorem[]{tcbLthmbox}{Theorem}{thmbox,L}{theo}
+\newtcbtheorem[number within=section]{example}{Esimerkki}{example}{theo}
+
+% % Theorems
+\definecolor{thmBgColor}{RGB}{250,250,250}
+\definecolor{thmLnColor}{RGB}{200,200,200}
+
+% \makeatletter
+% % define a new theorem style
+\def\tcb@theo@widetitle#1#2#3{\hbox to \textwidth{\textsc{\large#1}\normalsize\space#3\hfil(#2)}}
+\tcbset{
+  theorem style/theorem wide name and number/.code={ \let\tcb@theo@title=\tcb@theo@widetitle},
+  proofbox/.style={enhanced,
+  breakable,
+  sharp corners=all,
+  fonttitle=\bfseries\normalsize,
+  fontupper=\normalsize\itshape,
+   top=0mm,
+   bottom=0mm,
+   right=0mm,
+  colback=white,
+  colframe=white,
+  colbacktitle=white,
+  coltitle=black,
+  attach boxed title to top left,
+  boxed title style={empty, size=minimal, bottom=1.5mm},
+  overlay unbroken ={
+      \draw ([xshift=3.5mm]frame.north west)|-([xshift=15mm]frame.south west);
+      \node[anchor=east] at (frame.south east) {$\square$};},
+  overlay first={
+      \draw (title.south west)--(title.south east); 
+      \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+  overlay middle={
+      \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+  overlay last={
+      \draw ([xshift=3.5mm]frame.north west)|-([xshift=15mm]frame.south west);
+      \node[anchor=east] at (frame.south east) {$\square$};},
+},
+}
+\newtcolorbox{ProofBox}{proofbox}
+% \makeatother
+
+% \newtcbtheorem[use counter=equation, number within=section]{mytheorem}{Theorem}%
+%   {theorem style=theorem wide name and number,
+%   enhanced,
+%   breakable,
+%   arc=0mm,
+%   outer arc=0mm,
+%   parbox=false,
+%   boxrule=0mm,toprule=2pt,bottomrule=2pt,left=1mm,right=1mm,
+%   titlerule=0mm,toptitle=0mm,bottomtitle=0mm,top=0mm,
+%   colback=thmBgColor,colframe=thmLnColor,
+%   title style={color=thmBgColor}, coltitle=black,
+%   attach title to upper={\par\noindent},
+%   before={\par\vfill\smallbreak\noindent}, after={\par},
+%   fonttitle=\normalfont\large,
+%   }{thm}
+% \makeatother
+
+% \newtcbtheorem[use counter=section, number within=section]{myexample}{Example}%
+%   {theorem style=theorem wide name and number,
+%   enhanced,
+%   breakable,
+%   arc=0mm,
+%   outer arc=0mm,
+%   parbox=false,
+%   boxrule=0mm,toprule=2pt,bottomrule=2pt,left=1mm,right=1mm,
+%   titlerule=0mm,toptitle=0mm,bottomtitle=0mm,top=0mm,
+%   colback=thmBgColor,colframe=thmLnColor,
+%   title style={color=thmBgColor}, coltitle=black,
+%   attach title to upper={\par\noindent},
+%   before={\par\vfill\smallbreak\noindent}, after={\par},
+%   fonttitle=\normalfont\large,
+%   }{thm}
+
+% \newenvironment{example}[2][]{\noindent\myexample{#1}{#2}}{\endmyexample}
+
+\let\realproof\proof
+\let\realendproof\endproof
+\renewenvironment{proof}[1][Proof]{\ProofBox\strut\textsc{#1}\space}{\endProofBox}
+
+% %% Style Definitions
+% \numberwithin{equation}{section}
